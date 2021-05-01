@@ -7,10 +7,10 @@ import yaml
 logger = logging.getLogger(__name__)
 
 
-def setup_logging(app_dir: Path):
+def setup_logging(app_dir: Path, config_path: Path):
     log_dir = app_dir / "log"
     log_dir.mkdir(exist_ok=True)
-    with (app_dir / "config" / "logging.yaml").open("r") as f:
+    with (config_path / "logging.yaml").open("r") as f:
         logging_config = yaml.safe_load(f)
         logging_config['handlers']['file']['filename'] = log_dir / "app.log"
         logging.config.dictConfig(logging_config)

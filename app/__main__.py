@@ -24,7 +24,7 @@ def main() -> FastAPI:
 
 
 if __name__ == '__main__':
-    setup_logging(app_dir)
+    setup_logging(app_dir, app_dir / "config")
     uvicorn.run(
         'app:main',
         factory=True,
