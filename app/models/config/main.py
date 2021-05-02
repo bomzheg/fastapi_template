@@ -8,3 +8,4 @@ from .db import DBConfig
 class Config:
     app_dir: Path
     db: DBConfig
+    secret_key: str
