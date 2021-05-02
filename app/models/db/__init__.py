@@ -1,5 +1,5 @@
-from .user import User
+from .worker import Worker
 
 __all__ = (
-    "User",
+    "Worker",
 )

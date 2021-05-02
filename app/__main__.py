@@ -19,7 +19,7 @@ def main() -> FastAPI:
     logger.info("started")
 
     app = FastAPI()
-    app.get("/hello")(hello)
+    app.router.add_api_route("/hello", hello)
     return app
 
 
