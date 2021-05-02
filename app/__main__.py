@@ -6,6 +6,8 @@ from fastapi import FastAPI
 
 from app.config import load_config
 from app.config.logging_config import setup_logging
+from app.middlewares import setup_middlewares
+from app.models.db.base import create_pool
 from app.routes.hello import hello
 
 
@@ -15,10 +17,12 @@ logger = logging.getLogger(__name__)
 
 def main() -> FastAPI:
     config = load_config(app_dir)
+    pool = create_pool(config.db)
 
     logger.info("started")
 
     app = FastAPI()
+    setup_middlewares(app, pool)
     app.router.add_api_route("/hello", hello)
     return app
 
@@ -28,6 +32,5 @@ if __name__ == '__main__':
     uvicorn.run(
         'app:main',
         factory=True,
-        reload=True,
         log_config=None
     )

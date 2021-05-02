@@ -1,5 +1,6 @@
-from starlette.requests import Request
+from fastapi import Request
 
 
-async def hello(request: Request):
-    return {"message": "Hello world"}
+async def hello(request: Request, foo: int = 0):
+
+    return {"message": f"Hello, {request.state.worker.name}  {foo}"}

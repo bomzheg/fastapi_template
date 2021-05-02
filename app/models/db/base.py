@@ -9,7 +9,8 @@ from app.models.config.db import DBConfig
 Base = declarative_base()
 
 
-async def create_pool(db_config: DBConfig):
+def create_pool(db_config: DBConfig) -> sessionmaker:
     engine = create_async_engine(url=make_url(db_config.uri))
-    pool = sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False, autoflush=False)
+    pool = sessionmaker(bind=engine, class_=AsyncSession,
+                        expire_on_commit=False, autoflush=False)
     return pool
