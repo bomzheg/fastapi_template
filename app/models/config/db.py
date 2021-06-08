@@ -7,7 +7,6 @@ logger = logging.getLogger(__name__)
 
 
 @dataclass
-@dataclass
 class DBConfig:
     type: str = None
     connector: str = None
