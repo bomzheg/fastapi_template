@@ -12,6 +12,5 @@ def setup_logging(app_dir: Path, config_path: Path):
     log_dir.mkdir(exist_ok=True)
     with (config_path / "logging.yaml").open("r") as f:
         logging_config = yaml.safe_load(f)
-        logging_config['handlers']['file']['filename'] = log_dir / "app.log"
         logging.config.dictConfig(logging_config)
     logger.info("Logging configured successfully")
