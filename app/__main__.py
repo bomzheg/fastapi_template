@@ -8,7 +8,7 @@ from app.config import load_config
 from app.config.logging_config import setup_logging
 from app.middlewares import setup_middlewares
 from app.models.db.base import create_pool
-from app.routes.hello import hello
+from app.routes import setup_routes
 
 
 app_dir = Path(__file__).parent.parent
@@ -23,7 +23,7 @@ def main() -> FastAPI:
 
     app = FastAPI()
     setup_middlewares(app, pool)
-    app.router.add_api_route("/hello", hello)
+    setup_routes(app)
     return app
 
 
